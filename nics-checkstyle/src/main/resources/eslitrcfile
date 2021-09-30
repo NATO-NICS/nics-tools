@@ -1,0 +1,40 @@
+{
+  "env": {
+    "browser": true,
+    "amd": true,
+
+    // set mocha env for tests
+    "mocha":true,
+
+    "node": true,
+    "es6": true
+  },
+
+  "globals": {
+    "Uint8Array": true
+  },
+
+  "rules": {
+    //require semicolons
+    "semi": ["error", "always"],
+
+    //require "function(a)" instead of "function (a)"
+    "space-before-function-paren": ["error", "never"],
+
+    //allow trailing spaces to accept Eclipse comment blocks
+    "no-trailing-spaces": "off",
+    "no-tabs": "off",
+    "off":"off",
+    "no-self-compare": "off"
+
+    //require "use strict" at function scope
+    // "strict": ["error", "function"]
+   },
+
+  //reset eslint options, set by standard
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "ecmaFeatures": null,
+    "sourceType": "module"
+  }
+}

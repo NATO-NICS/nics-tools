@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+    Copyright (c) 2008-2021, Massachusetts Institute of Technology (MIT)
+    All rights reserved.
+
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice, this
+    list of conditions and the following disclaimer.
+
+    2. Redistributions in binary form must reproduce the above copyright notice,
+    this list of conditions and the following disclaimer in the documentation
+    and/or other materials provided with the distribution.
+
+    3. Neither the name of the copyright holder nor the names of its contributors
+    may be used to endorse or promote products derived from this software without
+    specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+    AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+    DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+    FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+    DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+    SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+    CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+    OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+    OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>edu.mit.ll.nics.tools</groupId>
+  <artifactId>nics-tools</artifactId>
+  <version>7.0.9-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>NICS Tools</name>
+  <description>NICS Tools and wrappers to other libraries</description>
+  <url>https://github.com/NATO-NICS/nics-tools</url>
+  <inceptionYear></inceptionYear>
+
+  <properties>
+    <!-- Dependency Versions -->
+    <apachePoiVersion>3.9</apachePoiVersion>
+    <jasyptVersion>1.9.0</jasyptVersion>
+    <javaxServletApiVersion>2.5</javaxServletApiVersion>
+    <drewnoakesMetadataExtractorVersion>2.13.0</drewnoakesMetadataExtractorVersion>
+    <logbackVersion>1.2.3</logbackVersion>
+    <testngVersion>7.1.0</testngVersion>
+
+    <!-- Plugin Versions -->
+    <mavenCompilerPluginVersion>3.8.1</mavenCompilerPluginVersion>
+    <mavenSurefirePluginVersion>2.22.2</mavenSurefirePluginVersion>
+    <licenseMavenPluginVersion>3.0</licenseMavenPluginVersion>
+
+    <!-- Project Properties -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <javaSourceVersion>1.8</javaSourceVersion>
+    <javaTargetVersion>1.8</javaTargetVersion>
+  </properties>
+
+  <modules>
+    <!--<module>nics-checkstyle</module>-->
+    <!--<module>sso-tools</module>-->
+    <!--<module>user-management-tools</module>-->
+    <module>image-processing</module>
+  </modules>
+
+  <dependencyManagement>
+
+    <dependencies>
+      <!-- Internal Dependencies -->
+      <!-- END Internal Dependencies-->
+
+      <!-- External Dependencies -->
+      <dependency>
+        <groupId>com.drewnoakes</groupId>
+        <artifactId>metadata-extractor</artifactId>
+        <version>${drewnoakesMetadataExtractorVersion}</version>
+      </dependency>
+      <dependency>
+        <groupId>ch.qos.logback</groupId>
+        <artifactId>logback-classic</artifactId>
+        <version>${logbackVersion}</version>
+      </dependency>
+
+      <!-- Test Dependencies -->
+      <dependency>
+        <groupId>org.testng</groupId>
+        <artifactId>testng</artifactId>
+        <version>${testngVersion}</version>
+        <scope>test</scope>
+      </dependency>
+      <!-- END Test Dependencies -->
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>${mavenCompilerPluginVersion}</version>
+          <configuration>
+            <source>${javaSourceVersion}</source>
+            <target>${javaTargetVersion}</target>
+          </configuration>
+        </plugin>
+
+        <plugin>
+          <!-- This plugin formats source files by checking and adding a copyright
+              header if it's missing. -->
+          <groupId>com.mycila</groupId>
+          <artifactId>license-maven-plugin</artifactId>
+          <version>${licenseMavenPluginVersion}</version>
+          <configuration>
+            <aggregate>true</aggregate>
+            <header>${basedir}/copyright.txt</header>
+            <strictCheck>true</strictCheck>
+            <properties>
+              <year>2021</year>
+            </properties>
+            <useDefaultExcludes>false</useDefaultExcludes>
+
+            <!-- Additional file-to-comment-style mappings -->
+            <mapping>
+              <java>SLASHSTAR_STYLE</java>
+              <xslt>XML_STYLE</xslt>
+            </mapping>
+
+            <excludes>
+              <!-- Some default excludes -->
+              <exclude>**/*~</exclude>
+              <exclude>**/*.jar</exclude>
+              <exclude>**/*.zip</exclude>
+              <exclude>**/*.tar*</exclude>
+              <exclude>**/*.pdf</exclude>
+              <exclude>**/*.jpg</exclude>
+              <exclude>**/*.png</exclude>
+              <exclude>**/*.gif</exclude>
+              <exclude>**/*.ico</exclude>
+              <exclude>**/*.bmp</exclude>
+              <exclude>**/*.tif*</exclude>
+              <exclude>**/*.cr2</exclude>
+              <exclude>**/MANIFEST.MF</exclude>
+              <exclude>**/.classpath</exclude>
+              <exclude>**/.project</exclude>
+              <exclude>**/.settings/**</exclude>
+              <exclude>**/target/**</exclude>
+              <exclude>**/test-output/**</exclude>
+              <exclude>**/META-INF/services/**</exclude>
+              <exclude>**/.git</exclude>
+              <exclude>**/.gitignore</exclude>
+              <exclude>**/.git/**</exclude>
+              <exclude>**/*.log</exclude>
+              <exclude>**/*.txt</exclude>
+              <exclude>**/*.bkup</exclude>
+              <exclude>**/*.template</exclude>
+              <exclude>**/*.md</exclude>
+              <exclude>**/*.versionsBackup</exclude>
+              <exclude>**/*.bat</exclude>
+              <exclude>**/*.</exclude>
+              <!-- Project-specific excludes -->
+            </excludes>
+          </configuration>
+          <inherited>false</inherited>
+          <executions>
+            <execution>
+              <id>update-copyright</id>
+              <phase>generate-sources</phase>
+              <goals>
+                <goal>format</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>verify-copyright</id>
+              <phase>verify</phase>
+              <goals>
+                <goal>check</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${mavenSurefirePluginVersion}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <groupId>com.mycila</groupId>
+        <artifactId>license-maven-plugin</artifactId>
+        <version>${licenseMavenPluginVersion}</version>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+  </repositories>
+</project>
